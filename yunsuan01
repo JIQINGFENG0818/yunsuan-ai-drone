@@ -1,0 +1,67 @@
+<<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>耘算互联AI无人机培训助手 - 内部专用</title>
+    <style>
+        body { font-family: 'Microsoft YaHei', sans-serif; background: #f8f9fa; margin:0; padding:20px; }
+        .header { text-align:center; padding:20px; background:#fff; border-bottom:1px solid #eee; }
+        .container { max-width:1000px; margin:0 auto; background:#fff; border-radius:12px; box-shadow:0 4px 20px rgba(0,0,0,0.1); overflow:hidden; height: calc(100vh - 140px); }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <img src="https://你的logo图片链接.png" width="180" alt="耘算互联Logo">   <!-- ← 这里换成你的真实Logo链接 -->
+        <h1>耘算互联AI无人机培训助手</h1>
+        <p style="color:#666;">内部专用 · 民航局最新训练大纲 · 专业培训 · 安全第一</p>
+    </div>
+    
+    <div class="container" id="chat-container">
+        <!-- 聊天框自动在这里显示 -->
+    </div>
+
+    <!-- 1. 加载扣子SDK库（必须放在前面） -->
+    <script src="https://lf-cdn.coze.cn/obj/unpkg/flow-platform/chat-app-sdk/1.2.0-beta.10/libs/cn/index.js"></script>
+
+    <!-- 2. 初始化你的Agent（已彻底隐藏所有扣子痕迹） -->
+    <script>
+    new CozeWebSDK.WebChatClient({
+      config: {
+        type: 'bot',
+        bot_id: '7612277612959711258',   // 你的Agent ID，已保留
+        isIframe: false,
+      },
+      auth: {
+        type: 'unauth',   // 先用无认证测试，稳定后再改成token
+      },
+      userInfo: {
+        id: 'internal_user',
+        nickname: '内部学员',
+      },
+      ui: {
+        base: {
+          layout: 'pc',
+          lang: 'zh-CN',        // 中文界面
+          zIndex: 1000
+        },
+        header: {
+          isShow: false,        // 隐藏SDK自带标题栏，用我们自己的header
+          isNeedClose: false,
+        },
+        footer: {
+          isShow: false,        // ← 关键！彻底隐藏 “Powered by Coze”
+        },
+        asstBtn: {
+          isNeed: false         // 不显示右下角浮动球（我们用全屏嵌入）
+        },
+        chatBot: {
+          title: '耘算互联AI无人机培训助手',
+          uploadable: true,     // 允许上传文件/课件
+          width: '100%',
+          el: '#chat-container' // 指定在我们的容器里显示
+        }
+      }
+    });
+    </script>
+</body>
+</html>
